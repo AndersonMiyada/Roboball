@@ -1,0 +1,87 @@
+  <!DOCTYPE html>
+  <html>
+  <head><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Robot Ball</title>
+    <style>
+    html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}
+    body{margin-top: 50px;} h1 {color: #444444;margin: 50px auto 30px;} h3 {color: #444444;margin-bottom: 50px;}
+    .forward{
+    	grid-column-start: 3;
+    	grid-column-end: 3;
+    }
+    .left{
+    	grid-column-start: 2;
+    	grid-column-end: 2;
+    }
+    .right{
+    	grid-column-start: 4;
+    	grid-column-end: 4;
+    }
+    .back{
+    	grid-column-start: 3;
+    	grid-column-end: 3;
+    }
+		.wrapper{ 
+			display:grid; 
+			grid-template-columns:  auto auto auto auto auto;
+		}
+		.button {
+			display: block;
+			width: 200px;
+			border: none;
+			color: red;
+			padding: 13px 30px;
+			text-decoration:none;
+			font-size: 25px;
+			margin: 0px auto 35px;
+			cursor: pointer;
+			border-radius: 4px;
+		  background-color: #4CAF50;
+		  cursor: pointer;
+		  box-shadow: 0 9px #999;
+		}
+		.button:hover {background-color: #3e8e41}
+		.button:active {
+		  background-color: #3e8e41;
+		  box-shadow: 0 5px #666;
+		  transform: translateY(4px);
+		}
+		.button-forward {background-color: #3491db;}
+		.button-on:active {background-color: #2980b9;}
+		.button-off {background-color: #34495e;}
+		.button-off:active {background-color: #2c3e50;}
+		p {font-size: 14px;color: #888;margin-bottom: 10px;}
+    </style>
+    </head>
+  <body>
+    <h1>Robot Ball</h1>
+    <h3>Controller</h3>
+	<div class="wrapper">
+		<div></div>
+		<div class="forward"><button id="forward"class="button"ontouchstart="movOn('/forwardOn')" ontouchend="stop()">Forward</button></div>
+		<div></div>
+		<div></div>
+		<div class="left"><button id="left" class="button" ontouchstart="movOn('/leftOn')" ontouchend="stop()">Left</button></div>
+		<div class="right"><button id="right" class="button" ontouchstart="movOn('/rightOn')" ontouchend="stop()">Right</button></div>
+		<div></div>
+		<div></div>
+		<div class="back"><button id="back" class="button" ontouchstart="movOn('/backOn')" ontouchend="stop()">Back</button></div>
+		<div></div>
+		</div>
+<script type="text/javascript">
+		function stop(){
+		const url = '/stopMoviment';
+		var xhr  = new XMLHttpRequest();
+		xhr.open("POST", url, true);
+		xhr.setRequestHeader('Content-Type', 'text/plain');
+		xhr.send();
+	}
+	function movOn(url){
+		var xhr  = new XMLHttpRequest();
+		xhr.open("POST", url, true);
+		xhr.setRequestHeader('Content-Type', 'text/plain');
+		xhr.send();
+	}
+</script>
+  </body>
+  </html>
